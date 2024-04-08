@@ -26,6 +26,7 @@
     "@types/uuid": "^9.0.8",
     "@uploadthing/react": "^6.4.1",
     "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",

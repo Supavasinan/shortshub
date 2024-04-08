@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: "ShortsHub",
@@ -33,6 +34,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           >
             {children}
             <Analytics />
+            <SpeedInsights />
             <Toaster />
           </ThemeProvider>
         </body>
