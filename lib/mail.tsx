@@ -1,29 +1,36 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);  
+const resend = new Resend(process.env.RESEND_API_KEY);
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 const sender = process.env.RESEND_EMAIL;
+import { VerificationEmail } from "@/templates/email/verification-email"
+import { ResetPasswordEmail } from "@/templates/email/reset-password-email";
+
 
 export const sendPasswordResetEmail = async (
   email: string,
+  name: string,
   token: string,
 ) => {
-  if (!sender) return
+  if (!sender) return console.log("Please set RESEND_EMAIL environment variable");
+
   const resetLink = `${domain}/auth/new-password?token=${token}`
 
   await resend.emails.send({
     from: sender,
     to: email,
     subject: "Reset your password",
-    html: `<p>Click <a href="${resetLink}">here</a> to reset password.</p>`
+    react: <ResetPasswordEmail name={name} resetPasswordLink={resetLink} />
   });
 };
 
 export const sendVerificationEmail = async (
   email: string,
+  name: string,
   token: string
 ) => {
-  if (!sender) return
+  if (!sender) return console.log("Please set RESEND_EMAIL environment variable");
+
 
   const confirmLink = `${domain}/auth/new-verification?token=${token}`;
 
@@ -31,6 +38,6 @@ export const sendVerificationEmail = async (
     from: sender,
     to: email,
     subject: "Confirm your email",
-    html: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`
+    react: <VerificationEmail name={name} verifyEmailLink={confirmLink} />,
   });
 };

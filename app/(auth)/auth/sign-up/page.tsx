@@ -48,7 +48,7 @@ export default function SignUp() {
             setError(data?.error);
           }
           if (data?.success) {
-            form.reset();
+            // form.reset();
             setSuccess(data.success);
           }
 

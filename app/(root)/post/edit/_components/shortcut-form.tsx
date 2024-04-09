@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ShortcutsInputSchema } from "@/schema/post"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { PostDetail } from "@prisma/client"
+import { isDate } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion"
 import { Disc, Pencil, Trash2 } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -16,7 +17,7 @@ import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { useRecordHotkeys } from 'react-hotkeys-hook'
 import { z } from "zod"
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -64,13 +65,20 @@ export function ShortcutForm({ postId, initShortcut }: Prop) {
 
 
     const onDelete = (id: string | undefined) => {
-        if (!id) return
-        form.setValue("shortcut", form.watch("shortcut").filter((shortcut) => shortcut.id !== id))
-        startTransition(() => {
-            deleteShortcut(id).then(() => {
-                toast.success("Deleted")
+        if (!id) return toast.error("Invalid id")
+        const shortcut = form.getValues("shortcut").find((shortcut) => shortcut.id === id)
+
+        if (shortcut?.id && shortcut?.id.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
+            startTransition(() => {
+                deleteShortcut(id).then(() => {
+                    toast.success("Deleted")
+                    form.setValue("shortcut", form.watch("shortcut").filter((shortcut) => shortcut.id !== id))
+                })
             })
-        })
+
+        } else {
+            form.setValue("shortcut", form.watch("shortcut").filter((shortcut) => shortcut.id !== id))
+        }
     }
 
     const RecordShortcut = (id: string) => {
@@ -93,7 +101,7 @@ export function ShortcutForm({ postId, initShortcut }: Prop) {
             })
         }
 
-    }, [keys])
+    }, [keys, form, isRecording, recordingState.id, recordingState.status]);
 
 
     const { isSubmitting, isValid } = form.formState;

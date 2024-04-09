@@ -14,9 +14,9 @@ type Post = Prisma.PostGetPayload<{
 
 
 
-export function PostCardOwner({ post }: { post: Post }) {
+export default function PostCardOwner({ post }: { post: Post }) {
     return (
-        <div className="group/post-card shadow-xl col-span-1 dark:border rounded-md transition-colors overflow-hidden relative">
+        <div className="group/post-card shadow-xl col-span-1 rounded-md transition-colors overflow-hidden relative">
             <Link href={`/post/edit/${post.id}`}>
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden flex items-center justify-center cursor-pointer">
                     {!post.imageUrl ? (
@@ -30,7 +30,7 @@ export function PostCardOwner({ post }: { post: Post }) {
                         />
                     )}
                 </div>
-                <div className="py-4 px-2 space-y-4">
+                <div className="py-4 space-y-4">
                     {post.categoryId && <Badge className="text-xs" variant={"secondary"}>{post.category?.name}</Badge>}
                     <p className="text-sm group-hover/post-card:underline text-balance truncate">
                         {post.title}

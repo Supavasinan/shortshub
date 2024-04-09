@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export default async function PostCard({ post }: { post: PostPayload }) {
     return (
-        <div className="group/post-card shadow-xl col-span-1 rounded-md dark:border transition-colors overflow-hidden relative">
+        <div className="group/post-card  col-span-1 rounded-md  transition-colors overflow-hidden relative">
             <div className=" absolute z-10 top-3 right-3">
                 <FavoriteButton favorites={post.favoritePost} postId={post.id} />
             </div>
@@ -30,7 +30,7 @@ export default async function PostCard({ post }: { post: PostPayload }) {
                     )}
 
                 </div>
-                <div className="py-4 px-2 space-y-4">
+                <div className="py-4 space-y-4">
                     {post.categoryId && <Badge className="text-xs" variant={"secondary"}>{post.category?.name}</Badge>}
                     <p className="text-sm group-hover/post-card:underline text-balance truncate">
                         {post.title}
@@ -40,7 +40,7 @@ export default async function PostCard({ post }: { post: PostPayload }) {
             </Link>
 
             <Separator />
-            <div className="p-2 flex items-center justify-between">
+            <div className="py-2 flex items-center justify-between">
                 <div className="flex items-center justify-start gap-x-2">
                     <Avatar className="size-5">
                         {post.user?.image ? (

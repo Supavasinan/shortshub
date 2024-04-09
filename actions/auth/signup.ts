@@ -42,9 +42,11 @@ export async function onSubmitSignUp(
         }
     })
 
+
     const verificationToken = await generateVerificationToken(email);
     await sendVerificationEmail(
         verificationToken.email,
+        name,
         verificationToken.token,
     );
 

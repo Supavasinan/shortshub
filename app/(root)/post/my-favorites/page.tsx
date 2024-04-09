@@ -1,7 +1,13 @@
-import { PostCard } from "@/components/custom/ui/post-card"
+import { PostCardLoading } from "@/components/custom/ui/post-card-loading"
 import { currentUser } from "@/data/user-session/server"
 import { db } from "@/lib/db"
+import dynamic from "next/dynamic"
 import { PageHeader } from "../_components/page-header"
+const PostCard = dynamic(() => import("@/components/custom/ui/post-card"),
+  {
+    loading: () => <PostCardLoading />
+  }
+)
 
 export default async function MyFavorites() {
 

@@ -1,11 +1,17 @@
-import { PostCardOwner } from "@/components/custom/ui/post-card-owner"
+import { PostCardLoading } from "@/components/custom/ui/post-card-loading"
 import { buttonVariants } from "@/components/shadcn/ui/button"
 import { currentUser } from "@/data/user-session/server"
 import { db } from "@/lib/db"
 import { cn } from "@/lib/utils"
 import { Plus } from "lucide-react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { PageHeader } from "../_components/page-header"
+const PostCardOwner = dynamic(() => import("@/components/custom/ui/post-card-owner"),
+    {
+        loading: () => <PostCardLoading />
+    }
+)
 
 
 export default async function MyPosts() {

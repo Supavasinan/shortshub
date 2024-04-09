@@ -18,13 +18,16 @@ export async function sendResetPassword(
 
     const existingUser = await getUserByEmail(email);
 
-    if (!existingUser) {
+    if (!existingUser || !existingUser.name) {
         return { error: "Email not found!" };
     }
+
+   
 
     const passwordResetToken = await generatePasswordResetToken(email);
     await sendPasswordResetEmail(
         passwordResetToken.email,
+        existingUser.name,
         passwordResetToken.token,
     );
 
