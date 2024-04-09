@@ -10,7 +10,7 @@ import Link from "next/link";
 
 
 
-export async function PostCard({ post }: { post: PostPayload }) {
+export default async function PostCard({ post }: { post: PostPayload }) {
     return (
         <div className="group/post-card shadow-xl col-span-1 rounded-md dark:border transition-colors overflow-hidden relative">
             <div className=" absolute z-10 top-3 right-3">

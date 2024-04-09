@@ -1,5 +1,5 @@
 import { NavbarMobileTypes } from "@/types";
-import { Heart, Home, Table2, UserRoundPlus } from "lucide-react";
+import { Heart, Home, Table2 } from "lucide-react";
 
 export const NavigationConfig: NavbarMobileTypes = [
     

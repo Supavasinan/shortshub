@@ -15,16 +15,11 @@ import { User } from "next-auth"
 import Image from "next/image"
 import Link from "next/link"
 import { useTransition } from "react"
-import { ThemesMenu } from "./themes-menu"
-
-
-
-
+import { ThemesMenu } from "./desktop/themes-desktop-menu"
 
 
 export function UserMenu({ user }: { user: User }) {
     const [isPending, startTransition] = useTransition();
-
 
     const { name, email, image } = user
 

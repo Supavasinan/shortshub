@@ -1,8 +1,12 @@
 import { SectionContainer } from "@/components/custom/ui/Layout/section-container"
-import { PostCard } from "@/components/custom/ui/post-card"
+import { PostCardLoading } from "@/components/custom/ui/post-card-loading"
 import { PostPayload } from "@/prisma/payloads/post"
-import { Prisma } from "@prisma/client"
-
+import dynamic from "next/dynamic"
+const PostCard = dynamic(() => import("@/components/custom/ui/post-card"),
+  {
+    loading: () => <PostCardLoading />
+  }
+)
 
 
 export function DynamicPosts({ posts }: { posts: PostPayload[] }) {
@@ -17,13 +21,14 @@ export function DynamicPosts({ posts }: { posts: PostPayload[] }) {
             2xl:grid-cols-6
             gap-4
             ">
-        {posts.map((post) => {
-          return (
-            <PostCard key={post.id} post={post} />
-          )
-        })}
+
+        {posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+
+
       </div>
 
-    </SectionContainer>
+    </SectionContainer >
   )
 }

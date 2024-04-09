@@ -14,10 +14,10 @@ export const UserMenuConfig: UserMenuTypes = [
         icon: UserRoundPlus,
         show: "unAuth"
     },
-    {
-        label: "Settings",
-        href: "/dashboard/account/profile",
-        icon: UserRoundPlus,
-        show: "onAuth"
-    },
+    // {
+    //     label: "Settings",
+    //     href: "/dashboard/account/profile",
+    //     icon: UserRoundPlus,
+    //     show: "onAuth"
+    // },
 ]

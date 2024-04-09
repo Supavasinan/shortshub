@@ -1,9 +1,7 @@
 import { db } from "@/lib/db";
+import { Hero } from "./_components/Hero/hero";
 import { Categories } from "./_components/categories";
 import { DynamicPosts } from "./_components/dynamic-posts";
-import { Hero } from "./_components/Hero/hero";
-
-
 
 export default async function IndexPage({ searchParams }: { searchParams: { categoryId: string, title: string } }) {
 
@@ -26,7 +24,6 @@ export default async function IndexPage({ searchParams }: { searchParams: { cate
   })
 
 
-  
   const categories = await db.category.findMany()
 
   return (

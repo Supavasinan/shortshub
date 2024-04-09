@@ -1,10 +1,11 @@
+"use client"
 import { MenubarCheckboxItem, MenubarSub, MenubarSubContent, MenubarSubTrigger } from "@/components/shadcn/ui/menubar";
 import { SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const themes = ["light", "dark", "system"]
 
-export function ThemesMenu({ disabled }: { disabled: boolean }) {
+export function ThemesMenu({ disabled }: { disabled?: boolean }) {
     const { setTheme, theme } = useTheme()
 
     return (

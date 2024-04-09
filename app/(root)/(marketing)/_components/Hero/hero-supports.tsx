@@ -22,7 +22,7 @@ const supports = [
 export function HeroSupports() {
     return (
         <div className="space-y-8">
-            <span className="text-xs text-muted-foreground">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, eveniet?</span>
+            <span className="text-xs text-muted-foreground">We support whatever you need </span>
             <div className="grid grid-cols-4 gap-4 px-8">
                 {supports.map((support) => (
                     <div key={support.name} className="group justify-self-center">
