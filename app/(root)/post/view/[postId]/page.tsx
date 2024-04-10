@@ -40,7 +40,6 @@ export default async function PostView({ params }: { params: { postId: string } 
                 className="object-contain"
                 sizes="(min-width: 760px) 672px, 91.82vw"
                 loading="lazy"
-                priority
               />
             )}
 

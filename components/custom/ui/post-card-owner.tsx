@@ -16,7 +16,7 @@ type Post = Prisma.PostGetPayload<{
 
 export default function PostCardOwner({ post }: { post: Post }) {
     return (
-        <div className="group/post-card shadow-xl col-span-1 rounded-md transition-colors overflow-hidden relative">
+        <div className="group/post-card  rounded-md transition-colors overflow-hidden relative">
             <Link href={`/post/edit/${post.id}`}>
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden flex items-center justify-center cursor-pointer">
                     {!post.imageUrl ? (
@@ -28,7 +28,6 @@ export default function PostCardOwner({ post }: { post: Post }) {
                             className="object-cover group-hover/post-card:scale-125 transition-all rounded-md"
                             alt={post.title}
                             loading="lazy"
-                            priority
                         />
                     )}
                 </div>

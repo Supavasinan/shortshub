@@ -27,7 +27,6 @@ export default async function PostCard({ post }: { post: PostPayload }) {
                             className="object-cover group-hover/post-card:scale-125 transition-all rounded-md"
                             alt={post.title}
                             loading="lazy"
-                            priority
                         />
                     )}
 
