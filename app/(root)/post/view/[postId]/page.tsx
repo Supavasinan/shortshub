@@ -2,13 +2,70 @@ import { Badge } from "@/components/shadcn/ui/badge"
 import { buttonVariants } from "@/components/shadcn/ui/button"
 import { currentUser } from "@/data/user-session/server"
 import { db } from "@/lib/db"
-import { cn } from "@/lib/utils"
+import { absoluteUrl, cn } from "@/lib/utils"
 import { Dot, Keyboard, Pencil } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { PageHeader } from "../../_components/page-header"
-export default async function PostView({ params }: { params: { postId: string } }) {
+import { Metadata } from "next/types"
+
+
+type Props = {
+  params: {
+    postId: string
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+  const post = await db.post.findUnique({
+    where: {
+      id: params.postId
+    },
+    include: {
+      category: true,
+      user: true,
+      postDetail: true
+    }
+  })
+
+  return {
+    title: post?.title,
+    description: post?.description,
+    category: post?.category?.name,
+    authors: { name: post?.user.name || "Anonymous", url: post?.user.image || "" },
+    creator: post?.user.name,
+    openGraph: {
+      title: post?.title,
+      description: post?.description || "No description provided",
+      url: absoluteUrl(`/post/view/${post?.id}`),
+      images: [
+        {
+          url: post?.imageUrl || "",
+          width: 800,
+          height: 600
+        }
+      ],
+
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post?.title,
+      description: post?.description || "No description provided",
+      images: [
+        {
+          url: post?.imageUrl || "",
+          width: 800,
+          height: 600
+        }
+      ]
+    },
+  }
+}
+
+
+export default async function PostView({ params }: Props) {
 
   const user = await currentUser()
   const post = await db.post.findUnique({
