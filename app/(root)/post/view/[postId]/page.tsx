@@ -38,6 +38,7 @@ export default async function PostView({ params }: { params: { postId: string } 
                 fill
                 alt={post.title}
                 className="object-contain"
+                sizes="(min-width: 760px) 672px, 91.82vw"
               />
             )}
 
@@ -45,10 +46,12 @@ export default async function PostView({ params }: { params: { postId: string } 
         </div>
 
         <div className="mt-4 flex flex-col gap-2 justify-start items-start">
-          <Link href={`/post/edit/${post.id}`} className={cn(buttonVariants({ variant: "ghost" }), "self-end flex items-center justify-center gap-3")}>
-            <Pencil className="size-4" />
-            <p className="text-sm">Edit Post</p>
-          </Link>
+          {isOwnPost && (
+            <Link href={`/post/edit/${post.id}`} className={cn(buttonVariants({ variant: "ghost" }), "self-end flex items-center justify-center gap-3")}>
+              <Pencil className="size-4" />
+              <p className="text-sm">Edit Post</p>
+            </Link>
+          )}
           {post.category?.name && (
             <Badge variant="secondary" className="self-end">
               {post.category?.name}
