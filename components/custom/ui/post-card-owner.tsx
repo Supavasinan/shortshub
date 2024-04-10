@@ -27,6 +27,8 @@ export default function PostCardOwner({ post }: { post: Post }) {
                             fill
                             className="object-cover group-hover/post-card:scale-125 transition-all rounded-md"
                             alt={post.title}
+                            loading="lazy"
+                            priority
                         />
                     )}
                 </div>
