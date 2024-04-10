@@ -1,13 +1,13 @@
 import { Badge } from "@/components/shadcn/ui/badge"
-import { Button, buttonVariants } from "@/components/shadcn/ui/button"
+import { buttonVariants } from "@/components/shadcn/ui/button"
 import { currentUser } from "@/data/user-session/server"
 import { db } from "@/lib/db"
+import { cn } from "@/lib/utils"
 import { Dot, Keyboard, Pencil } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { redirect } from "next/navigation"
 import { PageHeader } from "../../_components/page-header"
-import Link from "next/link"
-import { cn } from "@/lib/utils"
 export default async function PostView({ params }: { params: { postId: string } }) {
 
   const user = await currentUser()
@@ -76,7 +76,5 @@ export default async function PostView({ params }: { params: { postId: string } 
         </div>
       </div>
     </PageHeader>
-
-
   )
 }

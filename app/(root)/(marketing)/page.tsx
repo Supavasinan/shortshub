@@ -32,5 +32,6 @@ export default async function IndexPage({ searchParams }: { searchParams: { cate
       <Categories categories={categories} />
       <DynamicPosts posts={post} />
     </div>
+
   );
 }
