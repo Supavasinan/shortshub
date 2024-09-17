@@ -3,6 +3,7 @@ import { User } from "next-auth";
 import Link from "next/link";
 import { Button } from "../../button";
 import { UserMenu } from "../user-menu";
+import { MessageCircleQuestionIcon } from "lucide-react";
 
 export default function DesktopNav({ user }: { user?: User }) {
     return (
@@ -11,6 +12,11 @@ export default function DesktopNav({ user }: { user?: User }) {
                 <>
                     <Link href="/auth/sign-in"><Button >Sign in</Button></Link>
                     <Link href="/auth/sign-up"><Button variant={'primary'}>Sign up</Button></Link>
+                    <Link href="/community">
+                        <Button  className="gap-2 bg-red-500 flex items-center justify-center">
+                            <MessageCircleQuestionIcon className="size-4" />
+                            <span> Community Zone</span>
+                        </Button></Link>
                 </>
             )}
 
